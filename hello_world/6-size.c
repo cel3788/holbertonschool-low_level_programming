@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <inttypes.h>
-
+/**
+ * Main function to display the sizes of various data types.
+ */
 int main(void)
 {
 
