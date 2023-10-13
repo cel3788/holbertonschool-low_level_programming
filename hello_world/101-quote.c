@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int main(void)
@@ -8,11 +10,12 @@ int main(void)
 
     if (write(2, quote, len) != len)
     {
-        // Handle write error
+        perror("Error writing to standard error");
         return (1);
     }
 
     return (1);
 }
+
 
 
