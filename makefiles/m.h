@@ -1,12 +1,7 @@
-#include "m.h"
+#ifndef __M_H__
+#define __M_H__
 
-/**
- * main - Entry point
- *
- * Return: Always 
- */
-int main(void)
-{
-	print_school();
-	return (EXIT_SUCCESS);
-}
+// Your other declarations here
+
+#endif /* __M_H__ */
+
