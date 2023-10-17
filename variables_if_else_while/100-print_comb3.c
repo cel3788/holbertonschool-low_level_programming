@@ -1,31 +1,34 @@
-#include "holberton.h"
 #include <stdio.h>
 
 /**
- * print_to_98 - Prints natural numbers to 98
- * @n: Number being evaluated
- */
-void print_to_98(int n)
+  * main - Prints combination of numbers
+  *
+  * Return: Always (Success)
+  */
+int main(void)
 {
-	if (n <= 98)
+	int c, i;
+
+	for (c = '0'; c <= '9'; c++)
 	{
-		while (n <= 98)
+		for (i = '0'; i <= '9'; i++)
 		{
-			printf("%i", n);
-			if (n != 98)
-				printf(", ");
-			n++;
+			if (c < i)
+			{
+				putchar(c);
+				putchar(i);
+
+				if (c != '8' || (c == '8' && i != '9'))
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
 		}
 	}
-	else
-	{
-		while (n >= 98)
-		{
-			printf("%i", n);
-			if (n != 98)
-				printf(", ");
-			n--;
-		}
-	}
-	printf("\n");
+
+	putchar('\n');
+
+	return (0);
 }
+
