@@ -1,0 +1,17 @@
+# Makefile for building the "school" executable
+
+# Variables
+CC := gcc
+SRC := main.c school.c
+EXECUTABLE := school
+
+# Rule to build the executable
+all: $(SRC)
+	$(CC) $(SRC) -o $(EXECUTABLE)
+
+# Clean rule to remove the executable
+clean:
+	rm -f $(EXECUTABLE)
+
+.PHONY: all clean
+
