@@ -1,7 +1,9 @@
 #ifndef __M_H__
 #define __M_H__
 
-// Your other declarations here
+#include <stdlib.h>
+#include <stdio.h>
 
-#endif /* __M_H__ */
+void print_school(void);
 
+#endif
