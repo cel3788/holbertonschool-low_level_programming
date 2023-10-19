@@ -16,4 +16,3 @@ int main(void)
     printf("%c: %d\n", character, _isupper(character));
     return (0);
 }
-
