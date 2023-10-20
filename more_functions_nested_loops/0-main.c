@@ -2,17 +2,17 @@
 #include <stdio.h>
 
 /**
- * main - Point d'entrée
+ * main - check the code.
  *
- * Return: Toujours 0
+ * Return: Always 0.
  */
 int main(void)
 {
-    char character; // Changez le nom de la variable en 'character'
+    char c;
 
-    character = 'A';
-    printf("%c: %d\n", character, _isupper(character));
-    character = 'a';
-    printf("%c: %d\n", character, _isupper(character));
+    c = 'A';
+    printf("%c: %d\n", c, _isupper(c));
+    c = 'a';
+    printf("%c: %d\n", c, _isupper(c));
     return (0);
 }
