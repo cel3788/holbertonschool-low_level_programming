@@ -1,10 +1,12 @@
 include submakefiles/common.mk
 include submakefiles/build.mk
-include submakefiles/clean.mk
 include submakefiles/re.mk
 include submakefiles/fclean.mk
 
 all: build
 
-.PHONY: all
+clean:
+    # Commandes pour nettoyer les fichiers temporaires
+
+.PHONY: all clean
 
