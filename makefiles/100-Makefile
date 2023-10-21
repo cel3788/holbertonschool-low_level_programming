@@ -3,7 +3,7 @@ SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
-RM = rm -f
+
 
 include submakefiles/common.mk
 include submakefiles/build.mk
