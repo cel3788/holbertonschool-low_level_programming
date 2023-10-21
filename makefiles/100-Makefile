@@ -4,24 +4,31 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-all: $(NAME)
+include submakefiles/common.mk
+include submakefiles/build.mk
+include submakefiles/clean.mk
+include submakefiles/re.mk
+include submakefiles/fclean.mk
 
-$(NAME): $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
-
-%.o: %.c
-	$(CC) -o $@ -c $<
+all: build
 
 clean:
-	$(RM) *~ $(OBJ)
+    # Supprimer les fichiers temporaires, tels que les fichiers .o
+    $(RM) *.o
 
 oclean:
-	$(RM) $(OBJ)
+    # Supprimer les fichiers objets, tels que les fichiers .o
+    $(RM) *.o
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+    # Supprimer tous les fichiers générés, y compris l'exécutable
+    $(RM) *.o $(NAME)
 
-re: fclean all
+re:
+    # Forcer la recompilation de tous les fichiers source
+    $(MAKE) fclean
+    $(MAKE) all
 
 .PHONY: all clean oclean fclean re
+
 
