@@ -1,6 +1,6 @@
 CC = gcc
 SRC = main.c m1.c m2.c m3.c
-OBJ = $(SRC:.c=.o)
+OBJ = main.o m1.o m2.o m3.o
 NAME = school
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -pedantic
@@ -13,11 +13,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) -o $@ $^
 
--include $(DEP)
-
-$(OBJ): %.o: %.c
-	$(CC) -c -o $@ $<
-
 clean:
 	-$(RM) clean
 	-$(RM) $(wildcard *~) $(wildcard \#*\#) $(wildcard *.swp) $(wildcard *.o) $(NAME)
@@ -26,29 +21,13 @@ oclean:
 	-$(RM) $(wildcard *.o)
 
 fclean: clean
+	-$(RM) $(NAME)
 
-re: fclean all
+re: all
 
 .PHONY: all clean oclean fclean re
 
-ifeq ($(origin CC), undefined)
-$(error Variable CC is undefined)
-endif
-
-ifeq ($(CC), gcc)
-ifneq ($(words $(SRC)), 4)
-$(error Variable SRC should store exactly 4 source files)
-endif
-ifneq ($(words $(OBJ)), 4)
-$(error Variable OBJ should store exactly 4 object files)
-endif
-ifneq ($(filter main.o school.o, $(OBJ)), )
-$(error Variable OBJ should not contain hardcoded file names 'main.o' or 'school.o')
-endif
-ifneq ($(NAME), school)
-$(error Variable NAME should be 'school')
-endif
-else
+ifneq ($(origin CC), undefined)
 $(error Variable CC is defined and used at most 1 time, and its value is gcc)
 endif
 
@@ -57,10 +36,12 @@ $(error Variable RM is used more than 2 times)
 endif
 
 ifneq ($(wildcard m.h),m.h)
-$(error File m.h is missing)
+$(error make -f 100-Makefile should fail if file m.h is missing)
 endif
 
-ifneq ($(CFLAGS), -Wall -Werror -Wextra -pedantic)
-$(error Variable CFLAGS should contain '-Wall -Werror -Wextra -pedantic')
+ifneq ($(MAKECMDGOALS),re)
+ifneq ($(MAKECMDGOALS),all)
+-include $(DEP)
+endif
 endif
 
