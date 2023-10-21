@@ -1,25 +1,3 @@
-include submakefiles/common.mk
-include submakefiles/build.mk
-include submakefiles/clean.mk
-include submakefiles/re.mk
-include submakefiles/fclean.mk
-
-all: build
-
-clean:
-    # Commandes pour nettoyer les fichiers temporaires
-
-oclean:
-    # Commandes pour nettoyer les fichiers objets
-
-fclean:
-    # Commandes pour nettoyer tous les fichiers, y compris les exécutables
-
-re:
-    # Commandes pour forcer la recompilation de tous les fichiers source
-
-.PHONY: all clean oclean fclean re
-
 # Définition de la variable CC
 CC = gcc
 
