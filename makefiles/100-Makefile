@@ -18,17 +18,16 @@ clean:
 
 oclean:
     # Supprimer les fichiers objets, tels que les fichiers .o
-   
+
 
 fclean:
     # Supprimer tous les fichiers générés, y compris l'exécutable
-    $(RM) *.o $(NAME)
+	$(RM) *.o $(NAME)
 
 re:
     # Forcer la recompilation de tous les fichiers source
-    $(MAKE) fclean
-    $(MAKE) all
+	$(MAKE) fclean
+	$(MAKE) all
 
 .PHONY: all clean oclean fclean re
-
 
