@@ -14,11 +14,11 @@ all: build
 
 clean:
     # Supprimer les fichiers temporaires, tels que les fichiers .o
-    $(RM) *.o
+    
 
 oclean:
     # Supprimer les fichiers objets, tels que les fichiers .o
-    $(RM) *.o
+   
 
 fclean:
     # Supprimer tous les fichiers générés, y compris l'exécutable
