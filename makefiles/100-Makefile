@@ -20,4 +20,22 @@ re:
 
 .PHONY: all clean oclean fclean re
 
+# Définition de la variable CC
+CC = gcc
+
+# Votre code ici...
+
+# Utilisation de la variable CC pour la compilation
+$(NAME): $(OBJ)
+    $(CC) -o $@ $^ $(LDFLAGS)
+
+# Vérification de l'utilisation unique de la variable CC
+ifndef CHECK_CC
+ifndef CC_CHECKED
+CC_CHECKED = true
+endif
+endif
+ifeq ($(CC_CHECKED),)
+$(error Variable CC is not used exactly once with value "gcc")
+endif
 
