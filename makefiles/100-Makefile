@@ -22,7 +22,7 @@ oclean:
 
 fclean:
     # Supprimer tous les fichiers générés, y compris l'exécutable
-	$(RM) *.o $(NAME)
+
 
 re:
     # Forcer la recompilation de tous les fichiers source
