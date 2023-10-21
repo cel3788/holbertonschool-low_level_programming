@@ -12,5 +12,12 @@ clean:
 oclean:
     # Commandes pour nettoyer les fichiers objets
 
-.PHONY: all clean oclean
+fclean:
+    # Commandes pour nettoyer tous les fichiers, y compris les exécutables
+
+re:
+    # Commandes pour forcer la recompilation de tous les fichiers source
+
+.PHONY: all clean oclean fclean re
+
 
