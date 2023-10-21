@@ -13,8 +13,8 @@ include submakefiles/fclean.mk
 all: build
 
 clean:
-    # Supprimer les fichiers temporaires, tels que les fichiers .o
-    
+    @echo "Nettoyage des fichiers temporaires"
+	@rm -f *.o
 
 oclean:
     # Supprimer les fichiers objets, tels que les fichiers .o
