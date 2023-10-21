@@ -1,36 +1,10 @@
-CC = gcc
-SRC = main.c m1.c m2.c m3.c
-OBJ = main.o m1.o m2.o m3.o
-NAME = school
-RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -pedantic
+include submakefiles/common.mk
+include submakefiles/build.mk
+include submakefiles/clean.mk
+include submakefiles/re.mk
+include submakefiles/fclean.mk
 
-all: $(NAME)
+all: build
 
-$(NAME): $(OBJ)
-	$(CC) -o $@ $^
-
-clean:
-	-$(RM) clean
-	-$(RM) $(wildcard *~) $(wildcard \#*\#) $(wildcard *.swp) $(wildcard *.o) $(NAME)
-
-oclean:
-	-$(RM) $(wildcard *.o)
-
-fclean: clean
-	-$(RM) $(NAME)
-
-re: all
-
-.PHONY: all clean oclean fclean re
-
-ifneq ($(origin CC), undefined)
-ifneq ($(words $(filter $(CC), $(MAKEFILE_LIST))), 1)
-$(error Variable CC is defined and used at most 1 time, and its value is gcc)
-endif
-endif
-
-ifneq ($(wildcard m.h),m.h)
-$(error make -f 100-Makefile should fail if file m.h is missing)
-endif
+.PHONY: all
 
