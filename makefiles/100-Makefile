@@ -1,19 +1,30 @@
-# Définition de la variable CC
 CC = gcc
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
+NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
+RM = rm -f
 
-# Votre code ici...
+include submakefiles/common.mk
+include submakefiles/build.mk
+include submakefiles/clean.mk
+include submakefiles/re.mk
+include submakefiles/fclean.mk
 
-# Utilisation de la variable CC pour la compilation
-$(NAME): $(OBJ)
-    $(CC) -o $@ $^ $(LDFLAGS)
+all: build
 
-# Vérification de l'utilisation unique de la variable CC
-ifndef CHECK_CC
-ifndef CC_CHECKED
-CC_CHECKED = true
-endif
-endif
-ifeq ($(CC_CHECKED),)
-$(error Variable CC is not used exactly once with value "gcc")
-endif
+clean:
+    # Commandes pour nettoyer les fichiers temporaires
+
+oclean:
+    # Commandes pour nettoyer les fichiers objets
+
+fclean:
+    # Commandes pour nettoyer tous les fichiers, y compris les exécutables
+
+re:
+    # Commandes pour forcer la recompilation de tous les fichiers source
+
+.PHONY: all clean oclean fclean re
+
 
