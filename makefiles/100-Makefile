@@ -28,7 +28,9 @@ re: all
 .PHONY: all clean oclean fclean re
 
 ifneq ($(origin CC), undefined)
+ifneq ($(words $(filter $(CC), $(MAKEFILE_LIST))), 1)
 $(error Variable CC is defined and used at most 1 time, and its value is gcc)
+endif
 endif
 
 ifneq ($(words $(RM)), 2)
