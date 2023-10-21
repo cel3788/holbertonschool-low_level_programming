@@ -11,35 +11,56 @@ all: $(NAME)
 -include $(DEP)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) -o $@ $^
 
-%.o: %.c
-	$(CC) $(CFLAGS) -MMD -c -o $@ $<
+-include $(DEP)
+
+$(OBJ): %.o: %.c
+	$(CC) -c -o $@ $<
 
 clean:
-	$(RM) $(OBJ) $(DEP)
+	-$(RM) clean
+	-$(RM) $(wildcard *~) $(wildcard \#*\#) $(wildcard *.swp) $(wildcard *.o) $(NAME)
 
 oclean:
-	$(RM) $(OBJ)
+	-$(RM) $(wildcard *.o)
 
 fclean: clean
-	$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean oclean fclean re
 
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(MAKECMDGOALS),oclean)
-ifneq ($(MAKECMDGOALS),fclean)
-ifneq ($(MAKECMDGOALS),re)
--include $(DEP)
+ifeq ($(origin CC), undefined)
+$(error Variable CC is undefined)
 endif
+
+ifeq ($(CC), gcc)
+ifneq ($(words $(SRC)), 4)
+$(error Variable SRC should store exactly 4 source files)
 endif
+ifneq ($(words $(OBJ)), 4)
+$(error Variable OBJ should store exactly 4 object files)
 endif
+ifneq ($(filter main.o school.o, $(OBJ)), )
+$(error Variable OBJ should not contain hardcoded file names 'main.o' or 'school.o')
+endif
+ifneq ($(NAME), school)
+$(error Variable NAME should be 'school')
+endif
+else
+$(error Variable CC is defined and used at most 1 time, and its value is gcc)
+endif
+
+ifneq ($(words $(RM)), 2)
+$(error Variable RM is used more than 2 times)
 endif
 
 ifneq ($(wildcard m.h),m.h)
-$(error Missing header file: m.h)
+$(error File m.h is missing)
+endif
+
+ifneq ($(CFLAGS), -Wall -Werror -Wextra -pedantic)
+$(error Variable CFLAGS should contain '-Wall -Werror -Wextra -pedantic')
 endif
 
