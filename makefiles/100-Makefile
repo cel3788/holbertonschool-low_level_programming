@@ -10,8 +10,9 @@ include submakefiles/clean.mk
 include submakefiles/re.mk
 include submakefiles/fclean.mk
 
-all: build
+all: $ ( school )
 
+	
 clean:
     @echo "Nettoyage des fichiers temporaires"
 
