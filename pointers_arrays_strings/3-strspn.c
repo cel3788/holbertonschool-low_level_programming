@@ -1,23 +1,31 @@
-#include <stdio.h>
 /**
- * _strchr - finds if char occurs in string
+ * _strspn - finds length of prefix substring
  *
  * @s: string to check
- * @c: character to find in s
+ * @accept: substring of chars
  *
- * Return: pointer to first instance of c, otherwise NULL
+ * Return: n bytes in intial segment of s which
+ * consist only of bytes from accept
  */
-char *_strchr(char *s, char c)
+unsigned int _strspn(char *s, char *accept)
 {
-	int i = 0;
+	int i;
+	int consistC = 0;
+	int prevC;
 
-	while (*(s + i))
+	while (*s)
 	{
-		if (*(s + i) == c)
-			return (s + i);
-		i++;
+		i = 0;
+		prevC = consistC;
+		while (*(accept + i) != '\0')
+		{
+			if (*(accept + i) == *s)
+				consistC++;
+			i++;
+		}
+		if (prevC == consistC) /* didn't equal a char from accept */
+			break;
+		s++;
 	}
-	if (*(s + i) == c)
-		return (s + i);
-	return (NULL);
+	return (consistC);
 }
