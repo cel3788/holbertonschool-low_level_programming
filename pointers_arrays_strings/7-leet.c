@@ -1,21 +1,24 @@
 #include "main.h"
-/**
- * print_chessboard - prints out a chessboard
- *
- * @a: chessboard to print, 2D array [8] columns
- *
- * Return: always void
- */
-void print_chessboard(char (*a)[8])
-{
-	int subC, primC = 0;
 
-	while (primC < 8)
-	{
-		subC = 0;
-		while (subC < 8)
-			_putchar(a[primC][subC++]);
-		_putchar('\n');
-		primC++;
-	}
+/**
+ * leet - Transforms a string into 1337 (leet) speak.
+ * @str: The string to transform.
+ *
+ * Return: A pointer to the transformed string.
+ */
+char *leet(char *str)
+{
+    /* Implementation of the leet transformation here */
+    return str;
 }
+
+int main(void)
+{
+    char str[] = "Hello, world!";
+    leet(str); // Call the leet function on the string
+
+    /* Rest of your main function code here */
+
+    return (0);
+}
+
