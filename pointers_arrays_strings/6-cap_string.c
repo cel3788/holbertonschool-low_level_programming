@@ -1,4 +1,6 @@
 #include "main.h"
+#include <string.h> // Include the string.h header for strchr function
+#include <stddef.h> // Include this for NULL definition
 
 /**
  * cap_string - Capitalizes the first letter of each word in a string.
