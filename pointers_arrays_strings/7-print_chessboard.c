@@ -1,36 +1,21 @@
+#include "holberton.h"
 /**
- * _strstr - locates a substring
+ * print_chessboard - prints out a chessboard
  *
- * @haystack: string to search
- * @needle: substring to find
+ * @a: chessboard to print, 2D array [8] columns
  *
- * Return: pointer to start of needle
- * in haystack
+ * Return: always void
  */
-char *_strstr(char *haystack, char *needle)
+void print_chessboard(char (*a)[8])
 {
-	char *occurance, *tempNeedle;
+	int subC, primC = 0;
 
-	if (!*needle) /* empty needle */
-		return (haystack);
-	while (*haystack)
+	while (primC < 8)
 	{
-		if (*haystack == *needle) /* first ch match */
-		{
-			occurance = haystack;
-			tempNeedle = needle;
-			while (*tempNeedle) /* check if match */
-			{
-				if (*haystack++ != *tempNeedle++)
-				{ /* not a match, reset pointer to first occurance */
-					haystack = occurance;
-					break;
-				}
-			}
-			if (occurance != haystack) /* didn't reset, found match */
-				return (occurance);
-		}
-		haystack++;
+		subC = 0;
+		while (subC < 8)
+			_putchar(a[primC][subC++]);
+		_putchar('\n');
+		primC++;
 	}
-	return (0); /* didn't find match */
 }
