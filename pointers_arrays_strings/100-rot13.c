@@ -8,21 +8,16 @@
 char *rot13(char *s)
 {
     int i;
-    char storeh[] = "NOPQRSTUVWXYZABCDEFGHIJKLM";
-    char storel[] = "nopqrstuvwxyzabcdefghijklm";
+    char storeh[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+    char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     for (i = 0; s[i] != '\0'; i++)
     {
-        if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
+        char *position = strchr(alphabet, s[i]);
+        if (position != NULL)
         {
-            if (s[i] >= 'A' && s[i] <= 'Z')
-            {
-                s[i] = storeh[s[i] - 'A'];
-            }
-            else
-            {
-                s[i] = storel[s[i] - 'a'];
-            }
+            int index = position - alphabet;
+            s[i] = storeh[index];
         }
     }
     return s;
