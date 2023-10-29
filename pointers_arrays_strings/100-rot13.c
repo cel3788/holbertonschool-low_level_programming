@@ -13,15 +13,18 @@ char *rot13(char *s)
 
     for (i = 0; s[i] != '\0'; i++)
     {
-        if ((s[i] >= 'A' && s[i] <= 'Z'))
+        if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
         {
-            s[i] = storeh[s[i] - 'A'];
-        }
-        else if ((s[i] >= 'a' && s[i] <= 'z'))
-        {
-            s[i] = storel[s[i] - 'a'];
+            if (s[i] >= 'A' && s[i] <= 'Z')
+            {
+                s[i] = storeh[s[i] - 'A'];
+            }
+            else
+            {
+                s[i] = storel[s[i] - 'a'];
+            }
         }
     }
-    return (s);
+    return s;
 }
 
