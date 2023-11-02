@@ -30,7 +30,6 @@ int checkprime(int n, int i)
 	{
 		return (1);
 	}
-	
 	if (n % i == 0)
 
 	{
