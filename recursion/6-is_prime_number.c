@@ -1,30 +1,28 @@
-#include <main.h>
+#include "main.h"
 /**
- * prime_finder - finds out if a number is prime recursively
- *
- * @x: number to determine if prime
- * @y: number to check if divisor
- *
- * Return: 1 if prime, 0 otherwise
- */
-int prime_finder(int x, int y)
-{
-	if (x == y)
-		return (1);
-	if (!(x % y))
-		return (0);
-	return (prime_finder(x, y + 1));
-}
-/**
- * is_prime_number - returns if a number is prime
- *
- * @n: number to determine primeness of
- *
- * Return: 1 if prime, 0 otherwise
+ * is_prime_number - func that returns 1 if a num is a prime num, 0 otherwise
+ * @n: number for input
+ * Return: 0
  */
 int is_prime_number(int n)
 {
-	if (n < 2)
+	return (helper_prime(n, 2, n / 2));
+}
+
+/**
+ *  helper_prime - blank
+ * @n: checkl
+ * @i: for the increment
+ * @limit: stop
+ * Return: 0
+ */
+
+int helper_prime(int n, int i, int limit)
+{
+	if ((n % i == 0 && i <= limit) || n < 0 || n == 1)
 		return (0);
-	return (prime_finder(n, 2));
+	else if (n % i != 0 && i <= limit)
+		return (helper_prime(n, i + 1, limit));
+	else
+		return (1);
 }
