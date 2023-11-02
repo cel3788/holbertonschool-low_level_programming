@@ -1,26 +1,30 @@
-#include "main.h"
-
+#include <main.h>
 /**
-  * puts2 - Prints every other character of a string
-  * @str: The string to be treated
-  *
-  * Return: void
-  */
-void puts2(char *str)
+ * prime_finder - finds out if a number is prime recursively
+ *
+ * @x: number to determine if prime
+ * @y: number to check if divisor
+ *
+ * Return: 1 if prime, 0 otherwise
+ */
+int prime_finder(int x, int y)
 {
-	int i;
-	int j = 0;
-
-	while (str[j] != '\0')
-	{
-		j++;
-	}
-
-	for (i = 0; i < j; i += 2)
-	{
-		_putchar(str[i]);
-	}
-
-	_putchar('\n');
+	if (x == y)
+		return (1);
+	if (!(x % y))
+		return (0);
+	return (prime_finder(x, y + 1));
 }
-
+/**
+ * is_prime_number - returns if a number is prime
+ *
+ * @n: number to determine primeness of
+ *
+ * Return: 1 if prime, 0 otherwise
+ */
+int is_prime_number(int n)
+{
+	if (n < 2)
+		return (0);
+	return (prime_finder(n, 2));
+}
