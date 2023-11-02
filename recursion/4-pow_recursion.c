@@ -11,7 +11,7 @@ int _pow_recursion(int x, int y)
 {
 	if (y < 0)
        	{
-	       	return (-1); /* Error condition for negative exponent */
+		return (-1); /* Error condition for negative exponent */
        	}
 	else if (y == 0)
 	{
@@ -19,7 +19,6 @@ int _pow_recursion(int x, int y)
 	}
 	else
 	{
-		return (x * _pow_recursion(x, y - 1)); /* Recursive calculation of power */
+		return (x * _pow_recursion(x, y - 1));
 	}
 }
-
