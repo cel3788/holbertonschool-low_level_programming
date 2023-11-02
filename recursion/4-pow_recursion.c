@@ -12,7 +12,7 @@ int _pow_recursion(int x, int y)
 	if (y < 0)
 	{
 		return (-1); /* Error condition for negative exponent */
-       	}
+	}
 	else if (y == 0)
 	{
 	return (1);  /* Anything raised to the power of 0 is 1 */
