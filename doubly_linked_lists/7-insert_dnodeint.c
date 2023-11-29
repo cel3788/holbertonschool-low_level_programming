@@ -1,51 +1,63 @@
 #include "lists.h"
-/**
- * insert_dnodeint_at_index - insert node at index
- * @h: reference to list
- * @idx: index of the new node
- * @n: value in list
- * Return: node added
- */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
-{
-	dlistint_t *node; /* new node */
-	dlistint_t *runner; /* runner in the list */
-	unsigned int r_idx = 0; /* runner index */
 
-	if (h) /* check if it's a valid list*/
+/**
+ * insert_dnodeint_at_idx - Insert a new node into a doubly linked list at a given index
+ * @head: Double pointer to the start of the list
+ * @idx: Index to insert new node at
+ * @n: Value to assign to new node
+ * Return: Address of the new node, NULL if it fails
+ */
+dlistint_t *insert_dnodeint_at_idx(dlistint_t **head, unsigned int idx, int n)
+{
+	unsigned int pos;
+	dlistint_t *new_node, *current, *prev;
+
+	if (*head == NULL && idx != 0)
+		return (NULL);
+
+	new_node = malloc(sizeof(dlistint_t));
+	if (new_node == NULL)
+		return (NULL);
+
+	if (*head != NULL)
 	{
-		node = malloc(sizeof(*node)); /* check if node has memory */
-		if (node)
+		prev = NULL;
+		current = *head;
+
+		// Check if idx is greater than the length of the list
+		if (idx > 0)
 		{
-			node->prev = NULL;
-			node->next = NULL;
-			node->n = n;
-			for (runner = *h; r_idx < idx; r_idx++)
+			for (pos = 0; pos < idx && current != NULL; pos++)
 			{
-				runner = runner->next;
-				/* Check if length of list < idx*/
-				if (!runner)
-				{
-					free(node);
-					return (NULL); /* ERROR */
-				}
+				prev = current;
+				current = current->next;
 			}
-			if (runner == NULL)
-			{
-				*h = node;
-				return (node);
-			}
-			node->next = runner->next; /* runner->next */
-			node->prev = runner;
-			runner->next = node;
-			if (node->next) /* check if runner is not the last node */
-			{
-				runner = node->next;
-				runner->prev = node;
-			}
-			return (node);
 		}
-		return (NULL); /* ERROR */
+
+		if (pos == idx)
+		{
+			new_node->n = n;
+			new_node->prev = prev;
+
+			if (current != NULL)
+				current->prev = new_node;
+
+			new_node->next = current;
+
+			if (idx != 0)
+				prev->next = new_node;
+			else
+				*head = new_node;
+
+			return (new_node);
+		}
+		return (NULL);
 	}
-	return (NULL); /* ERROR */
+
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	new_node->n = n;
+	*head = new_node;
+	return (new_node);
 }
+
