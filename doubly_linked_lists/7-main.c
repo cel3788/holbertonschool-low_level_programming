@@ -4,9 +4,9 @@
 #include "lists.h"
 
 /**
- * main - check the code for Holberton School students.
+ * main - Entry point
  *
- * Return: Always EXIT_SUCCESS.
+ * Return: Always EXIT_SUCCESS
  */
 int main(void)
 {
@@ -23,9 +23,10 @@ int main(void)
     add_dnodeint_end(&head, 1024);
     print_dlistint(head);
     printf("-----------------\n");
-    insert_dnodeint_at_index(&head, 8, 4096);
+    insert_dnodeint_at_index(&head, 5, 4096);
     print_dlistint(head);
     free_dlistint(head);
     head = NULL;
     return (EXIT_SUCCESS);
 }
+
