@@ -25,7 +25,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 	if (pos < index)
 		return (-1);
-	if (pos == 0 && current->next != NULL)
+	if (pos == 0)
 	{
 		kill_node = current;
 		current = current->next;
