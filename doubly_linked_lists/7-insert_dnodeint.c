@@ -1,53 +1,26 @@
-
-
 #include "lists.h"
 /**
- * insert_dnodeint_at_index - insert node at index
- * @h: reference to list
- * @idx: index of the new node
- * @n: value in list
- * Return: node added
+ * get_nodeint_at_index - get the node
+ * @head: head
+ * @index: index
+ * Return: 0
  */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	dlistint_t *node; /* new node */
-	dlistint_t *runner; /* runner in the list */
-	unsigned int r_idx = 0; /* runner index */
+	unsigned int count = 0;
 
-	if (h) /* check if it's a valid list*/
+	while (count < index)
 	{
-		node = malloc(sizeof(*node)); /* check if node has memory */
-		if (node)
+
+		if (head->next == NULL)
 		{
-			node->prev = NULL;
-			node->next = NULL;
-			node->n = n;
-			for (runner = *h; r_idx < idx; r_idx++)
-			{
-				runner = runner->next;
-				/* Check if length of list < idx*/
-				if (!runner)
-				{
-					free(node);
-					return (NULL); /* ERROR */
-				}
-			}
-			if (runner == NULL)
-			{
-				*h = node;
-				return (node);
-			}
-			node->next = runner->next; /* runner->next */
-			node->prev = runner;
-			runner->next = node;
-			if (node->next) /* check if runner is not the last node */
-			{
-				runner = node->next;
-				runner->prev = node;
-			}
-			return (node);
+			return (NULL);
 		}
-		return (NULL); /* ERROR */
+		else
+		{
+			count++;
+			head = head->next;
+		}
 	}
-	return (NULL); /* ERROR */
+	return (head);
 }
