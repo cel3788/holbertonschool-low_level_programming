@@ -5,22 +5,22 @@
  * @index: index
  * Return: 0
  */
-dlistint_t *get_dlisint_at_index(dlistint_t *head, unsigned int index)
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	unsigned int count = 0;
 
-	while (count < index)
+	while (count < idx)
 	{
 
-		if (head->next == NULL)
+		if ((*h)->next == NULL)
 		{
 			return (NULL);
 		}
 		else
 		{
 			count++;
-			head = head->next;
+			*h =(*h)->next;
 		}
 	}
-	return (head);
+	return (*h);
 }
