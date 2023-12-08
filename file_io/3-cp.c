@@ -1,5 +1,5 @@
-nclude<stdio.h>
-#include "holberton.h"
+#include <stdio.h>
+#include "main.h"
 
 int usage_msg(void);
 int cant_read(char *);
